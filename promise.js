@@ -1,5 +1,7 @@
 const fs = require('fs');
 
+const demoFile = './exampleFiles/exampleFile1.js';
+
 const pluckFirstLineFromFilePromise = (filepath) => {
   return new Promise((resolve, reject) => {
     fs.readFile(filepath, 'utf8', (err, data) => {
@@ -13,13 +15,13 @@ const pluckFirstLineFromFilePromise = (filepath) => {
   });
 };
 
-// pluckFirstLineFromFilePromise('./exampleFiles/exampleFile1.js')
-//   .then((data) => {
-//     console.log('success', data);
-//   })
-//   .catch((err) => {
-//     console.log('err', err);
-//   });
+pluckFirstLineFromFilePromise(demoFile)
+  .then((data) => {
+    console.log('success', data);
+  })
+  .catch((err) => {
+    console.log('err', err);
+  });
 
 module.exports = {
   pluckFirstLine: pluckFirstLineFromFilePromise

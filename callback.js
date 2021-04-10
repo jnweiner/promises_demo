@@ -1,5 +1,7 @@
 const fs = require('fs');
 
+const demoFile = './exampleFiles/exampleFile1.js';
+
 const pluckFirstLineFromFileCallback = (filepath, callback) => {
   fs.readFile(filepath, 'utf8', (err, data) => {
     if (err) {
@@ -11,10 +13,10 @@ const pluckFirstLineFromFileCallback = (filepath, callback) => {
   });
 };
 
-// pluckFirstLineFromFileCallback('./exampleFiles/exampleFile1.js', (err, data) => {
-//   if (err) {
-//     console.log('err', err);
-//   } else {
-//     console.log('success', data);
-//   }
-// });
+pluckFirstLineFromFileCallback(demoFile, (err, data) => {
+  if (err) {
+    console.log('err', err);
+  } else {
+    console.log('success', data);
+  }
+});
