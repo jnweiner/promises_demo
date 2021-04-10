@@ -13,10 +13,14 @@ const pluckFirstLineFromFilePromise = (filepath) => {
   });
 };
 
-pluckFirstLineFromFilePromise('./exampleFiles/exampleFile1.js')
-  .then((data) => {
-    console.log('success', data);
-  })
-  .catch((err) => {
-    console.log('err', err);
-  });
+// pluckFirstLineFromFilePromise('./exampleFiles/exampleFile1.js')
+//   .then((data) => {
+//     console.log('success', data);
+//   })
+//   .catch((err) => {
+//     console.log('err', err);
+//   });
+
+module.exports = {
+  pluckFirstLine: pluckFirstLineFromFilePromise
+}

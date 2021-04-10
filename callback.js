@@ -11,10 +11,10 @@ const pluckFirstLineFromFileCallback = (filepath, callback) => {
   });
 };
 
-pluckFirstLineFromFileCallback('./exampleFiles/exampleFile1.js', (err, data) => {
-  if (err) {
-    console.log('err', err);
-  } else {
-    console.log('success', data);
-  }
-});
+// pluckFirstLineFromFileCallback('./exampleFiles/exampleFile1.js', (err, data) => {
+//   if (err) {
+//     console.log('err', err);
+//   } else {
+//     console.log('success', data);
+//   }
+// });
