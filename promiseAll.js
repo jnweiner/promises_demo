@@ -2,24 +2,40 @@ const fs = require('fs');
 const path = require('path');
 const { pluckFirstLine } = require('./promise.js');
 
-const pluckManyFirstLines = (dir) => {
+const demoDir = './exampleFiles';
+
+const getFilepaths = (dir) => {
   return new Promise((resolve, reject) => {
-    fs.readdir(dir, 'utf8', (err, files) => {
+    fs.readdir(dir, 'utf8', (err, filepaths) => {
       if (err) {
         reject(err);
       } else {
-        const firstLinePromises = files.map(file => {
-          const filepath = path.join(__dirname, dir, file);
-          return pluckFirstLine(filepath);
-        });
-        resolve(Promise.all(firstLinePromises));
+        resolve(filepaths);
       }
     });
   });
 };
 
+const pluckManyFirstLines = (dir) => {
+  return new Promise((resolve, reject) => {
+    getFilepaths(dir)
+      .then((filepaths) => {
+        const firstLinePromises = filepaths.map(filepath => {
+          const relativePath = path.join(__dirname, dir, filepath);
+          return pluckFirstLine(relativePath);
+        });
+        return Promise.all(firstLinePromises);
+      })
+      .then((firstLines) => {
+        resolve(firstLines);
+      })
+      .catch((err) => {
+        reject(err);
+      })
+  })
+};
 
-pluckManyFirstLines('./exampleFiles')
+pluckManyFirstLines(demoDir)
   .then((data) => {
     console.log('success', data);
   })
